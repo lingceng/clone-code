@@ -18,8 +18,7 @@ some **similar words** will be replaced:
 * HELLOWORLD --> *HELLOWORLD*
 * hello_world --> *well_done*
 
-`--encoding=utf-8` specify the encoding to **utf-8** when the file contains UTF-8 sequence  
-other option may be **gbk**
+`--encoding=utf-8` specify the encoding to **utf-8** when the file contains UTF-8 sequence, other option may be **gbk**
 
 ###Options
 - **-f** specify the word which replace *from*  using *camel case*  
