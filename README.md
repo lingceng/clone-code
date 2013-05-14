@@ -34,7 +34,11 @@ other option may be **gbk**
   - \*\*  Matches directories recursively.
   - \*    Matches any file
   - ?     Matches any one character
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 68f4a9e04f4fe90150c9321186741dd6ef81fed6
     eg.  
     `-d '/home/**/*.rb'` matches all ruby files in home or subdirecory  
     `-d '/hello*/*'` matches all files in direcory which starts with 'hello'
