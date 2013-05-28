@@ -15,31 +15,31 @@ class App
         if @opt.rename
             FileUtils.copy(from, to);
         else
-            File.open(to, 'w') do |rfile| 
+            tmp = IO.read(from)
 
-                File.foreach(from) do |line|
-                    # do replace
-                    rfile.puts @replacer.sub(line) 
-                end
+            tmp = @replacer.sub(tmp)
+
+            File.open(to, 'w') do |rfile| 
+                rfile.puts tmp
             end
         end
     end
 
     def run()
         # capatible for windows path
-        @opt.directory.gsub!('\\', '/');
+        @opt.directory.gsub!('\\', '/')
+        # whether replace quietly
+        all = false
 
         Dir[@opt.directory].each do |f|
             puts "do with [#{f}]"  
 
             rf = @replacer.sub(f)
-            rf = f + '_replaced' if f == rf
-           
 
             # create file dir if not exist
             if File.directory?(f) 
                if Dir.exist?(rf) 
-                    puts "folder [#{rf}] existed and ignored"  if @opt.verbose
+                   puts "folder [#{rf}] existed and ignored"  if @opt.verbose
                else
                    puts "mkdir [#{rf}]"
                    FileUtils.mkpath(rf) 
@@ -47,11 +47,24 @@ class App
                end
             else 
                 if File.exist?(rf) 
-                    puts "warning: [#{rf}] existed, yes to override [no]?"
-                    cmd = gets
-                    if cmd.chomp == "yes"
+                    if  all
+                        puts "replace [#{f}] to file [#{rf}]"
                         subfile(f, rf)
+                    else
+                        puts "warning: [#{rf}] existed, yes/all/no(default)?"
+                        cmd = gets
+                        cmd.chomp!
+                        
+                        if cmd == "all"
+                          all = true
+                        end
+
+                        if cmd == "yes" || cmd == "y" || cmd == "all"
+                            puts "replace [#{f}] to file [#{rf}]"
+                            subfile(f, rf)
+                        end
                     end
+
                 else
 		                FileUtils.mkpath(File.dirname(rf)) 
                     puts "replace [#{f}] to file [#{rf}]"

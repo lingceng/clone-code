@@ -42,6 +42,8 @@ some **similar words** will be replaced:
 
 
 ----------------------
+####version 1.4
+change the replace original file logic
 ####version 1.3
 capatible windows path like 'E:\Hello\*'
 

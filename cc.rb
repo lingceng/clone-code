@@ -9,7 +9,7 @@ require 'lib/app'
 
 options = OpenStruct.new
 parser = OptionParser.new do |opts|
-  opts.version = "1.3"
+  opts.version = "1.4"
   opts.banner = <<EOS
 Usage: launch.rb [options]
 eg. launch.rb -f HellWorld -t WellDone -d 'HelloWorld/**/*'
