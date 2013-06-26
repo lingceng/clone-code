@@ -53,7 +53,7 @@ class App
                     else
                         puts "warning: [#{rf}] existed, yes/all/no(default)?"
                         cmd = gets
-                        cmd.chomp!
+                        cmd.strip!
                         
                         if cmd == "all"
                           all = true
