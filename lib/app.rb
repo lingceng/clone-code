@@ -51,9 +51,9 @@ class App
                         puts "replace [#{f}] to file [#{rf}]"
                         subfile(f, rf)
                     else
-                        puts "warning: [#{rf}] existed, yes/all/no(default)?"
+                        puts "warning: [#{rf}] existed, y(es)/all/no, default is #{@opt.confirm}?" 
                         cmd = gets
-                        cmd.strip!
+                        cmd = @opt.confirm if cmd.strip.empty?
                         
                         if cmd == "all"
                           all = true
