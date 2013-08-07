@@ -35,7 +35,7 @@ EOS
   end
 
   opts.on("-q", "--confirm DEF", "Set default action when target dir exists, yes/all/no") do |v|
-    options.confirm = v || "no"
+    options.confirm = v
   end
 
   opts.on("-v", "--[no-]verbose", "Run verbosely, default false") do |v|

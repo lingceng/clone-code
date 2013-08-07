@@ -28,6 +28,9 @@ class App
     def run()
         # capatible for windows path
         @opt.directory.gsub!('\\', '/')
+        
+        @opt.comfirm ||= "no"
+
         # whether replace quietly
         all = false
 
@@ -52,8 +55,8 @@ class App
                         subfile(f, rf)
                     else
                         puts "warning: [#{rf}] existed, y(es)/all/no, default is #{@opt.confirm}?" 
-                        cmd = gets
-                        cmd = @opt.confirm if cmd.strip.empty?
+                        cmd = gets.strip
+                        cmd = @opt.confirm if cmd.empty?
                         
                         if cmd == "all"
                           all = true
