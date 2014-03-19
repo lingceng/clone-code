@@ -1,7 +1,5 @@
-$:.unshift File.dirname(__FILE__) + "/"
-
 require 'test/unit'
-require '../lib/replacer'
+require_relative '../lib/replacer'
 
 class ReplacerTest < Test::Unit::TestCase
   def setup
@@ -9,8 +7,8 @@ class ReplacerTest < Test::Unit::TestCase
   end
 
   def test_sub
-    str = "HelloWorld helloWorld helloworld HELLOWORLD hello_world"
-    exp = "WellDone wellDone welldone WELLDONE well_done"
+    str = "HelloWorld helloWorld helloworld HELLOWORLD hello_world HELLO_WORLD"
+    exp = "WellDone wellDone welldone WELLDONE well_done WELL_DONE"
 
     act = @rp.sub(str)
 

@@ -20,6 +20,9 @@ class Replacer
         # underscore sub, eg hello_world to well_down 
         @rstr.gsub!(underscore(@from), underscore(@to));
 
+        # underscore sub upcase, eg HELLO_WORLD to WELL_DOWN 
+        @rstr.gsub!(underscore(@from).upcase, underscore(@to).upcase);
+        
         # downcase sub, eg helloworld to welldown 
         @rstr.gsub!(@from.downcase, @to.downcase);
         # upcase sub, eg HELLOWORLD to WELLDOWN 
