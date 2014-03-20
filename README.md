@@ -17,6 +17,7 @@ some **similar words** will be replaced:
 * helloworld --> *welldone*
 * HELLOWORLD --> *HELLOWORLD*
 * hello_world --> *well_done*
+* HELLO_WORLD --> *WELL_DONE*
 
 `--encoding=utf-8` specify the encoding to **utf-8** when the file contains UTF-8 sequence, other option may be **gbk**
 

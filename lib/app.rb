@@ -7,6 +7,17 @@ require 'lib/replacer'
 class App
     def initialize(options) 
         @opt = options;
+
+        # capatible for windows path
+        @opt.directory.gsub!('\\', '/')
+        @opt.from.gsub!('\\', '/')
+        @opt.to.gsub!('\\', '/')
+
+        @opt.comfirm ||= "no"
+        @opt.folder ||= ""
+        @opt.folder.gsub!('\\', '/')
+
+
         @replacer = Replacer.new(options.from, options.to)
     end
 
@@ -26,18 +37,19 @@ class App
     end
 
     def run()
-        # capatible for windows path
-        @opt.directory.gsub!('\\', '/')
-        
-        @opt.comfirm ||= "no"
-
         # whether replace quietly
         all = false
+
+        append_point = unless @opt.folder.empty?
+          arr = @opt.folder.split("/")
+          arr[0] if arr.size >= 2
+        end
 
         Dir[@opt.directory].each do |f|
             puts "do with [#{f}]"  
 
             rf = @replacer.sub(f)
+            rf.sub!(append_point, @opt.folder) if append_point
 
             # create file dir if not exist
             if File.directory?(f) 

@@ -38,6 +38,10 @@ EOS
     options.confirm = v
   end
 
+  opts.on("-p", "--append FOLDER", "Append folder after specific path, for example to add 'hi' foler after 'doc' use -p doc/hi") do |v|
+    options.folder = v 
+  end
+
   opts.on("-v", "--[no-]verbose", "Run verbosely, default false") do |v|
     options.verbose = v
   end
