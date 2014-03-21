@@ -13,7 +13,7 @@ class App
         @opt.from.gsub!('\\', '/')
         @opt.to.gsub!('\\', '/')
 
-        @opt.comfirm ||= "no"
+        @opt.confirm ||= "no"
         @opt.folder ||= ""
         @opt.folder.gsub!('\\', '/')
 
