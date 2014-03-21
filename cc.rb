@@ -3,6 +3,7 @@
 
 require 'optparse'
 require 'ostruct'
+require 'yaml'
 require_relative 'lib/app'
 
 
@@ -29,6 +30,11 @@ EOS
     options.directory = v
   end
 
+  opts.on("-y", "--yml YAML", "YAML configuire file", 
+          "eg. -y task.yml") do |v|
+    options.yml = v
+  end
+
   opts.on("-r", "--[no-]rename", "Just rename and copy content") do |v|
     options.rename = v
   end
@@ -37,7 +43,8 @@ EOS
     options.confirm = v
   end
 
-  opts.on("-p", "--append FOLDER", "Append folder after specific path, for example to add 'hi' foler after 'doc' use -p doc/hi") do |v|
+  opts.on("-p", "--append FOLDER", "Append folder after specific path.", 
+          "eg. to add 'hi' foler after 'doc' use -p doc/hi") do |v|
     options.folder = v 
   end
 
@@ -51,15 +58,23 @@ parser.parse!(ARGV)
 if options.verbose
     puts "start replacer..."
     p options
-    #p ARGV
 end
 
 
-if options.from && options.to  && options.directory
-    app = App.new(options)
-    app.run
+if options.yml
+  conf = YAML.load_file(options.yml)
+
+  opts = OpenStruct.new(conf)
+  app = App.new(opts)
+  for item in opts.path
+    app.clone(item)
+  end 
+
+elsif options.from && options.to  && options.directory
+  app = App.new(options)
+  app.clone(options.directory)
 else
-    puts parser.help
+  puts parser.help
 end
 
 puts "replacer stopped" if options.verbose

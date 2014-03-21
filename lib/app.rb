@@ -9,7 +9,6 @@ class App
         @opt = options;
 
         # capatible for windows path
-        @opt.directory.gsub!('\\', '/')
         @opt.from.gsub!('\\', '/')
         @opt.to.gsub!('\\', '/')
 
@@ -36,7 +35,9 @@ class App
         end
     end
 
-    def run()
+    def clone(path)
+        path.gsub!('\\', '/')
+
         # whether replace quietly
         all = false
 
@@ -45,7 +46,7 @@ class App
           arr[0] if arr.size >= 2
         end
 
-        Dir[@opt.directory].each do |f|
+        Dir[path].each do |f|
             puts "do with [#{f}]"  
 
             rf = @replacer.sub(f)
