@@ -1,5 +1,5 @@
 require 'fileutils'
-require 'lib/replacer'
+require_relative 'replacer'
 
 #
 # file recursive

@@ -1,10 +1,9 @@
 # encoding: utf-8
 
-$:.unshift File.dirname(__FILE__) + "/"
 
 require 'optparse'
 require 'ostruct'
-require 'lib/app'
+require_relative 'lib/app'
 
 
 options = OpenStruct.new
